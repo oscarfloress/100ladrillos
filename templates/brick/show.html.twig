@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Brick{% endblock %}
+
+{% block body %}
+    <h1>Brick</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ brick.id }}</td>
+            </tr>
+            <tr>
+                <th>PropertyId</th>
+                <td>{{ brick.propertyId }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ brick.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('brick_index') }}">back to list</a>
+
+    <a href="{{ path('brick_edit', {'id': brick.id}) }}">edit</a>
+
+    {{ include('brick/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,20 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BrickController!{% endblock %}
+{% block title %}Brick index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Brick index</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>PropertyId</th>
+                <th>Price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for brick in bricks %}
+            <tr>
+                <td>{{ brick.id }}</td>
+                <td>{{ brick.propertyId }}</td>
+                <td>{{ brick.price }}</td>
+                <td>
+                    <a href="{{ path('brick_show', {'id': brick.id}) }}">show</a>
+                    <a href="{{ path('brick_edit', {'id': brick.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/100ladrillos/src/Controller/BrickController.php'|file_link(0) }}">src/Controller/BrickController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/100ladrillos/templates/brick/index.html.twig'|file_link(0) }}">templates/brick/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <a href="{{ path('brick_new') }}">Create new</a>
 {% endblock %}
