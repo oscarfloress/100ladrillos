@@ -10,21 +10,23 @@
     </div>
 {% endif %}
 
-<div class="container" style="text-align: right;">
-    <br>
-    <a href="/carrito" class="badge-success"> Ver Carrito (<span id="elementosCarrito">0</span>) </a>
+<div class="container">
+	<br>
+	<div class="alert alert-success">
+		Carrito sdfsif
+		<a href="#" class="badge-success"> Ver Carrito </a>
+	</div>
 </div>
 
 <div class="container cd-cart cd-cart--empty js-cd-cart">
-    <br>
+    
     <div class="cd-cart__content">
         <div class="cd-cart__layout">
             
             <div class="cd-cart__body">
-
-                <ul class="list-group contenedor">
+                <ul style="display: inline;">
                     {% for brick in bricks %}
-                    <li class="list-group-item cd-cart__product" style="padding:20px;">
+                    <li class="cd-cart__product">
                         <div class="cd-cart__image">
                             <img src="{{ brick.img }}" alt="" style="width: 200px; height: 200px;">
                         </div>
@@ -46,22 +48,16 @@
                                     
                                     <label for="cd-product-productId">{{ brick.quantity }}</label>
 
-                                    <select class="reset" id="cd-product-productId" name="quantity">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
+                                    <span class="cd-cart__select">
+                                        <select class="reset" id="cd-product-productId" name="quantity">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
 
-                                    <button class="btn btn-primary atc" name="btnAccion" value="Agregar" type="submit">Agregar al carrito</button>
+                                    </span>
                                 </div>
 
+                                <button class="btn btn-primary" name="btnAccion" value="Agregar" type="submit">Agregar al carrito</button>
                             </div>
                         </div>
                     </li>
@@ -74,5 +70,22 @@
     </div> <!-- .cd-cart__content -->
 </div> <!-- cd-cart -->
 
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-ligth fixed-top">
+	<a class="navbar-brand" href="index.php"> logo de la empresa</a>
+	<button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
+		<span class="navar-toggle-icon"></span>
+	</button>
+	<div id="mynav" class="collapse navar-collapse">
+	<ul class="navar-nav mr-auto">
+	        <li class="nav-item active">
+			<a class="nav-link" href=""index.php""> Home </a>
+		</li>
+		<li class="nav-item active">
+			<a class="nav-link" href="#"> Carrito(0) </a>
+		</li>
+	</ul>
+	</div>
+</nav>
 
 {% endblock %}

@@ -14,11 +14,59 @@
 
         {% endblock %}
 
+        <style>
+            .contenedor {
+                display: grid; 
+                grid-template-columns: repeat(4, 1fr); 
+                grid-gap: 40px;
+                max-width: 1140px;
+            }
+
+            @media screen and (min-width: 410px) {
+                .contenedor {
+                    grid-template-columns: repeat(1, 1fr); 
+                }
+            }
+
+            @media screen and (min-width: 490px) {
+                .contenedor {
+                    grid-template-columns: repeat(2, 1fr); 
+                }
+            }
+            
+            @media screen and (min-width: 600px) {
+                .contenedor {
+                    grid-template-columns: repeat(3, 1fr); 
+                }
+            }
+
+            @media screen and (min-width: 1140px) {
+                .contenedor {
+                    grid-template-columns: repeat(4, 1fr); 
+                }
+            }
+        </style>
+
         {% block javascripts %}
             <!-- Latest compiled and minified JavaScript -->
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             {# {{ encore_entry_script_tags('app') }} #}
         {% endblock %}
+
+        <script>
+            $(function() {
+                $(".atc").click(function() {
+                
+                    var texto = parseInt($("#elementosCarrito").text());
+                    
+                    $("#elementosCarrito").text(texto + parseInt($( this ).siblings( ".reset" ).val()));
+                    
+                    event.preventDefault();
+                    
+                });
+            });
+        </script>
     </head>
     <body>
         {% block body %}{% endblock %}
