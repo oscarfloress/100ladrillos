@@ -3,35 +3,91 @@
 {% block title %}Brick index{% endblock %}
 
 {% block body %}
-    <h1>Brick index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>PropertyId</th>
-                <th>Price</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for brick in bricks %}
-            <tr>
-                <td>{{ brick.id }}</td>
-                <td>{{ brick.propertyId }}</td>
-                <td>{{ brick.price }}</td>
-                <td>
-                    <a href="{{ path('brick_show', {'id': brick.id}) }}">show</a>
-                    <a href="{{ path('brick_edit', {'id': brick.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% if app.user %}
+    <div class="mb-3" style="text-align: right;">
+        {{ app.user.username }} <a class="btn btn-danger" href="{{ path('app_logout') }}">Salir</a>
+    </div>
+{% endif %}
 
-    <a href="{{ path('brick_new') }}">Create new</a>
+<div class="container">
+	<br>
+	<div class="alert alert-success">
+		Pantalla de mensaje...
+		<a href="#" class="badge-success"> Ver Carrito </a>
+	</div>
+</div>
+
+<div class="cd-cart cd-cart--empty js-cd-cart">
+    
+    <div class="cd-cart__content">
+        <div class="cd-cart__layout">
+            
+            <div class="cd-cart__body">
+                <ul style="display: inline;">
+                    {% for brick in bricks %}
+                    <li class="cd-cart__product">
+                        <div class="cd-cart__image">
+                            <a href="#">
+                                <img src="{{ brick.img }}" alt="placeholder" style="width: 200px; height: 200px;">
+                            </a>
+                        </div>
+
+                        <div class="cd-cart__details">
+                            {% set propertyname = "" %}
+                            {% for property in properties %}
+                                {% if property.id == brick.propertyId %}
+                                    {% set propertyname = property.name  %}
+                                {% endif %}
+                            {% endfor %}
+                            <h3 class="truncate">{{ propertyname }}</h3>
+
+                            <span class="cd-cart__price">{{ brick.price }}</span>
+
+                            <div class="cd-cart__actions">
+                                
+                                <div class="cd-cart__quantity">
+                                    
+                                    <label for="cd-product-productId">{{ brick.quantity }}</label>
+
+                                    <span class="cd-cart__select">
+                                        <select class="reset" id="cd-product-productId" name="quantity">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select>
+
+                                    </span>
+                                </div>
+
+                                <button class="btn btn-primary" name="btnAccion" value="Agregar" type="submit">Agregar al carrito</button>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+
+        </div>
+    </div> <!-- .cd-cart__content -->
+</div> <!-- cd-cart -->
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-ligth fixed-top">
+	<a class="navbar-brand" href="index.php"> logo de la empresa</a>
+	<button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse">
+		<span class="navar-toggle-icon"></span>
+	</button>
+	<div id="mynav" class="collapse navar-collapse">
+	<ul class="navar-nav mr-auto">
+	        <li class="nav-item active">
+			<a class="nav-link" href=""index.php""> Home </a>
+		</li>
+		<li class="nav-item active">
+			<a class="nav-link" href="#"> Carrito(0) </a>
+		</li>
+	</ul>
+	</div>
+</nav>
+
 {% endblock %}

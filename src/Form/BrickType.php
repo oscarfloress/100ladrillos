@@ -14,6 +14,7 @@ class BrickType extends AbstractType
         $builder
             ->add('propertyId')
             ->add('price')
+            ->add('quantity')
         ;
     }
 

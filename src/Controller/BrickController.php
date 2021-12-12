@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Brick;
+use App\Entity\Property;
 use App\Form\BrickType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,9 +24,14 @@ class BrickController extends AbstractController
         $bricks = $entityManager
             ->getRepository(Brick::class)
             ->findAll();
+        
+        $properties = $entityManager
+            ->getRepository(Property::class)
+            ->findAll();
 
         return $this->render('brick/index.html.twig', [
             'bricks' => $bricks,
+            'properties' => $properties,
         ]);
     }
 
